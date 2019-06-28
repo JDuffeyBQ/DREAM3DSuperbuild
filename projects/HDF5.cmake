@@ -58,6 +58,17 @@ ExternalProject_Add(${extProjectName}
   LOG_INSTALL 1
 )
 
+set(HDF5_CMAKE_APPLE "share/cmake/hdf5")
+set(HDF5_CMAKE_WIN32 "cmake/hdf5")
+set(HDF5_CMAKE_LINUX "share/cmake/hdf5")
+
+if(APPLE)
+  set(HDF5_CMAKE_PATH ${HDF5_INSTALL}/${HDF5_CMAKE_APPLE})
+elseif(WIN32)
+  set(HDF5_CMAKE_PATH ${HDF5_INSTALL}/${HDF5_CMAKE_WIN32})
+else()
+  set(HDF5_CMAKE_PATH ${HDF5_INSTALL}/${HDF5_CMAKE_LINUX})
+endif()
 
 #-- Append this information to the DREAM3D_SDK CMake file that helps other developers
 #-- configure DREAM3D for building

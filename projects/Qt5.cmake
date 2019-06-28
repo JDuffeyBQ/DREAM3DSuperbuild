@@ -54,7 +54,7 @@ message(STATUS "External Project: ${extProjectName}: ${qt5_version_full}" )
 
 
 
-set(qt5_INSTALL "${DREAM3D_SDK}/${extProjectName}${qt5_version_full}")
+set(qt5_INSTALL "${DREAM3D_SDK}/${extProjectName}/${qt5_version_full}")
 set(qt5_BINARY_DIR "${DREAM3D_SDK}/superbuild/${extProjectName}/Build")
 
 get_filename_component(_self_dir ${CMAKE_CURRENT_LIST_FILE} PATH)
@@ -198,7 +198,19 @@ ExternalProject_Add(Qt5
   BUILD_COMMAND ""
   INSTALL_COMMAND ""
   TEST_COMMAND ""
-  )
+)
+
+set(Qt5_CMAKE_APPLE "clang_64/lib/cmake/Qt5")
+set(Qt5_CMAKE_WIN32 "${QT_MSVC_VERSION_NAME}/lib/cmake/Qt5")
+set(Qt5_CMAKE_LINUX "gcc_64/lib/cmake/Qt5")
+
+if(APPLE)
+  set(Qt5_CMAKE_PATH ${qt5_INSTALL}/${Qt5_CMAKE_APPLE})
+elseif(WIN32)
+  set(Qt5_CMAKE_PATH ${qt5_INSTALL}/${Qt5_CMAKE_WIN32})
+else()
+  set(Qt5_CMAKE_PATH ${qt5_INSTALL}/${Qt5_CMAKE_LINUX})
+endif()
 
 #-- Append this information to the DREAM3D_SDK CMake file that helps other developers
 #-- configure DREAM3D for building

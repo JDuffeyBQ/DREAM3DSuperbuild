@@ -131,7 +131,6 @@ FILE(APPEND ${DREAM3D_SDK_FILE} "\n#--------------------------------------------
 FILE(APPEND ${DREAM3D_SDK_FILE} "# Always write out the compile_commands.json file to help out things like QtCreator and VS Code\n")
 FILE(APPEND ${DREAM3D_SDK_FILE} "set(CMAKE_EXPORT_COMPILE_COMMANDS ON)\n")
 
-
 include(Python)
 include(Pybind11)
 include(Discount)
@@ -188,6 +187,10 @@ elseif(NOT "${Qt5_QMAKE_EXECUTABLE}" STREQUAL "")
   FILE(APPEND ${DREAM3D_SDK_FILE} "set(Qt5_DIR \"${QT_INSTALL_LIBS}/cmake/Qt5\" CACHE PATH \"\")\n")
   FILE(APPEND ${DREAM3D_SDK_FILE} "set(CMAKE_MODULE_PATH \${CMAKE_MODULE_PATH} \${Qt5_DIR})\n")
 endif()
+
+include(H5Support)
+
+add_dependencies(H5Support hdf5)
 
 #--------------------------------------------------------------------------------------------------
 # Are we building Qwt (ON by default)
