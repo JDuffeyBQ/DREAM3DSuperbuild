@@ -48,6 +48,8 @@ ExternalProject_Add(${extProjectName}
   LOG_BUILD 1
   LOG_TEST 1
   LOG_INSTALL 1
+
+  DEPENDS hdf5
 )
 
 #-- Append this information to the DREAM3D_SDK CMake file that helps other developers

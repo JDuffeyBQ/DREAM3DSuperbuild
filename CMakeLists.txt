@@ -188,9 +188,8 @@ elseif(NOT "${Qt5_QMAKE_EXECUTABLE}" STREQUAL "")
   FILE(APPEND ${DREAM3D_SDK_FILE} "set(CMAKE_MODULE_PATH \${CMAKE_MODULE_PATH} \${Qt5_DIR})\n")
 endif()
 
+# Build H5Support with HDF5 and Qt5
 include(H5Support)
-
-add_dependencies(H5Support hdf5)
 
 #--------------------------------------------------------------------------------------------------
 # Are we building Qwt (ON by default)
