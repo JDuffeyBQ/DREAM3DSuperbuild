@@ -149,6 +149,7 @@ include(HDF5)
 include(TBB)
 include(Haru)
 include(Boost)
+include(SpanLite)
 
 #--------------------------------------------------------------------------------------------------
 # If we are on Apple we need a FileSystem compatible with older versions of macOS
